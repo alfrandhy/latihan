@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -21,6 +22,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $users = User::with('role')->get();
+        return view('dashboard', compact('users'));
     }
 }
